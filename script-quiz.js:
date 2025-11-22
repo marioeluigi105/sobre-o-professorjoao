@@ -1,41 +1,101 @@
-const quiz = [
-    {p:"Quantos anos o João tem?", a:"23"},
-    {p:"Qual moto é um dos maiores sonhos dele?", a:"KTM 1390"},
-    {p:"Qual seu personagem favorito de Hunter x Hunter? (um deles)", a:"Gon"},
-    {p:"Qual o maior sonho automotivo dele?", a:"NSX"},
-    {p:"Quantas tatuagens ele tem?", a:"8"},
-    {p:"Qual gênero musical ele NÃO ouve?", a:"Nenhum"},
-    {p:"Nome de um carro que ele gosta?", a:"GTR"},
-    {p:"Personagem de Fullmetal favorito dele?", a:"Edward"},
-    {p:"Moto aventureira que ele ama?", a:"África Twin"},
-    {p:"Personagem misterioso de Gravity Falls?", a:"Bill Cipher"}
+// ------------------------------
+// QUIZ COMPLETO EM ALTERNATIVAS
+// ------------------------------
+
+const perguntas = [
+    {
+        pergunta: "Quantos anos o João tem?",
+        alternativas: ["20", "21", "23", "25"],
+        correta: 2
+    },
+    {
+        pergunta: "Qual moto é um dos maiores sonhos do João?",
+        alternativas: ["Hornet", "KTM 1390", "BMW 1000RR", "Yamaha R1"],
+        correta: 1
+    },
+    {
+        pergunta: "Qual personagem ele ama (Hunter x Hunter)?",
+        alternativas: ["Hisoka", "Kurapika", "Gon", "Illumi"],
+        correta: 2
+    },
+    {
+        pergunta: "Qual é o maior sonho automotivo do João?",
+        alternativas: ["Supra", "NSX", "Ferrari 488", "Mclaren P1"],
+        correta: 1
+    },
+    {
+        pergunta: "Quantas tatuagens João tem?",
+        alternativas: ["3", "5", "8", "10"],
+        correta: 2
+    },
+    {
+        pergunta: "Qual gênero musical ele NÃO deixa de ouvir?",
+        alternativas: ["Funk", "Clássico", "Rap", "Ele ouve todos"],
+        correta: 3
+    },
+    {
+        pergunta: "Qual desses carros ele AMA?",
+        alternativas: ["Celta Life", "Nissan GTR", "Uno 1.0", "Corsa Wind"],
+        correta: 1
+    },
+    {
+        pergunta: "Qual personagem de Fullmetal Alchemist ele prefere?",
+        alternativas: ["Riza Hawkeye", "Scar", "Edward", "Hohenheim"],
+        correta: 2
+    },
+    {
+        pergunta: "Qual moto aventureira é sonho dele?",
+        alternativas: ["XRE 300", "África Twin", "Tiger 900", "V-Strom 650"],
+        correta: 1
+    },
+    {
+        pergunta: "Quem é o personagem misterioso de Gravity Falls que ele gosta?",
+        alternativas: ["Dipper", "Bill Cipher", "Stan", "Mabel"],
+        correta: 1
+    }
 ];
 
-let i = 0;
+// ------------------------------
+// SISTEMA DO QUIZ
+// ------------------------------
 
-function mostrarPergunta(){
-    if(i >= quiz.length){
-        document.getElementById("quiz").innerHTML = "<h2>Fim! Você completou o quiz!</h2>";
+let numero = 0;
+
+function carregarPergunta() {
+    const area = document.getElementById("quiz");
+
+    if (numero >= perguntas.length) {
+        area.innerHTML = `
+            <div class="pergunta">
+                <h2>🎉 Parabéns! Você finalizou o quiz! 🎉</h2>
+            </div>`;
         return;
     }
 
-    let q = quiz[i];
-    document.getElementById("quiz").innerHTML = `
-        <p><b>${q.p}</b></p>
-        <input id='resp' style='padding:10px;width:90%;'>
-        <button onclick='verificar()' style='margin-top:10px;padding:10px 20px;'>Enviar</button>
+    let q = perguntas[numero];
+
+    area.innerHTML = `
+        <div class="pergunta">
+            <h2>${q.pergunta}</h2>
+            ${q.alternativas.map((alt, i) => `
+                <button class="opcao" onclick="responder(${i})">${alt}</button>
+            `).join("")}
+        </div>
     `;
 }
 
-function verificar(){
-    let r = document.getElementById("resp").value;
-    if(r.toLowerCase().includes(quiz[i].a.toLowerCase())){
-        alert("Certo!");
+function responder(opcao) {
+    let correta = perguntas[numero].correta;
+
+    if (opcao === correta) {
+        alert("✔️ Acertou!");
     } else {
-        alert("Errado!");
+        alert("❌ Errou!");
     }
-    i++;
-    mostrarPergunta();
+
+    numero++;
+    carregarPergunta();
 }
 
-mostrarPergunta();
+// Inicializa o quiz
+window.onload = carregarPergunta;
