@@ -39,23 +39,68 @@ h1, h2 {
     text-shadow: 0 0 10px red, 0 0 20px purple;
 }
 
-/* ---------- GRID DE IMAGENS ---------- */
-.grid {
+/* ---------- GRID MOTOS ---------- */
+.motos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    padding: 30px;
+    padding: 20px 50px;
+    margin-bottom: 50px;
 }
 
-.grid img {
+.motos-grid div {
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    background: rgba(255,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.motos-grid div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff0000, 0 0 40px purple;
+}
+
+.motos-grid img {
     width: 100%;
     border-radius: 10px;
-    border: 2px solid red;
 }
 
-.grid p {
+.motos-grid p {
     text-align: center;
     padding: 10px;
+    font-weight: bold;
+}
+
+/* ---------- GRID CARROS ---------- */
+.carros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+
+.carros-grid div {
+    border: 2px solid #6600ff;
+    border-radius: 12px;
+    background: rgba(102,0,255,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carros-grid div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px purple, 0 0 40px red;
+}
+
+.carros-grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carros-grid p {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
 }
 
 /* ---------- CAIXA DE MENSAGENS ---------- */
@@ -72,4 +117,21 @@ h1, h2 {
     padding: 10px;
     margin-top: 10px;
     border-left: 4px solid purple;
+}
+
+/* ---------- BOTÕES ---------- */
+button {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #a00000;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #6600ff;
+    transform: scale(1.1);
 }
