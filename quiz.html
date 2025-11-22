@@ -20,7 +20,60 @@
 <h1>Quiz — Quanto você conhece o João?</h1>
 
 <div id="quiz" style="max-width:700px;margin:auto;font-size:20px;"></div>
-<script src="script-quiz.js"></script>
+
+<script>
+const quiz = [
+    { p: "Quantos anos o João tem?", a: "23" },
+    { p: "Qual moto é um dos maiores sonhos dele?", a: "KTM 1390" },
+    { p: "Qual seu personagem favorito de Hunter x Hunter? (um deles)", a: "Gon" },
+    { p: "Qual o maior sonho automotivo dele?", a: "NSX" },
+    { p: "Quantas tatuagens ele tem?", a: "8" },
+    { p: "Qual gênero musical ele NÃO ouve?", a: "Nenhum" },
+    { p: "Nome de um carro que ele gosta?", a: "GTR" },
+    { p: "Personagem de Fullmetal favorito dele?", a: "Edward" },
+    { p: "Moto aventureira que ele ama?", a: "África Twin" },
+    { p: "Personagem misterioso de Gravity Falls?", a: "Bill Cipher" }
+];
+
+let i = 0;
+
+function mostrarPergunta() {
+    const divQuiz = document.getElementById("quiz");
+
+    if (i >= quiz.length) {
+        divQuiz.innerHTML = "<h2>Fim! Você completou o quiz! ✔️</h2>";
+        return;
+    }
+
+    let q = quiz[i];
+    divQuiz.innerHTML = `
+        <p><b>${q.p}</b></p>
+        <input id="resp" autocomplete="off" style="padding:10px;width:90%;border-radius:5px;">
+        <br><br>
+        <button onclick="verificar()" style="padding:10px 20px;">Enviar</button>
+    `;
+}
+
+function verificar() {
+    let r = document.getElementById("resp").value.trim();
+
+    if (r === "") {
+        alert("Digite alguma resposta!");
+        return;
+    }
+
+    if (r.toLowerCase().includes(quiz[i].a.toLowerCase())) {
+        alert("Certo! ✔️");
+    } else {
+        alert("Errado! ❌");
+    }
+
+    i++;
+    mostrarPergunta();
+}
+
+mostrarPergunta();
+</script>
 
 </body>
 </html>
