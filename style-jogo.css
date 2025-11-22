@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #090909, #2b0033);
+    color: white;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #a00000;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #6600ff;
+    transform: scale(1.1);
+}
+
+#gameCanvas {
+    background-color: #87ceeb; /* céu */
+    display: block;
+    margin: 20px auto;
+    border: 3px solid red;
+    border-radius: 10px;
+}
