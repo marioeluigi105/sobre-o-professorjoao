@@ -4,7 +4,6 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #090909, #2b0033);
     color: white;
-    text-align: center;
 }
 
 /* ---------- MENU NAV ---------- */
@@ -40,26 +39,15 @@ h1, h2 {
     text-shadow: 0 0 10px red, 0 0 20px purple;
 }
 
-/* ---------- GRID DE IMAGENS ---------- */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 30px;
-}
-
-.grid img {
-    width: 100%;
-    border-radius: 10px;
-    border: 2px solid red;
-}
-
-.grid p {
-    text-align: center;
-    padding: 10px;
-}
-
 /* ---------- GRID MOTOS ---------- */
+.motos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+
 .motos-grid div {
     border: 2px solid #ff0000;
     border-radius: 12px;
@@ -72,7 +60,26 @@ h1, h2 {
     box-shadow: 0 0 20px #ff0000, 0 0 40px purple;
 }
 
+.motos-grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.motos-grid p {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
 /* ---------- GRID CARROS ---------- */
+.carros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+
 .carros-grid div {
     border: 2px solid #6600ff;
     border-radius: 12px;
@@ -83,6 +90,17 @@ h1, h2 {
 .carros-grid div:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px purple, 0 0 40px red;
+}
+
+.carros-grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carros-grid p {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
 }
 
 /* ---------- CAIXA DE MENSAGENS ---------- */
@@ -116,25 +134,4 @@ button {
 button:hover {
     background: #6600ff;
     transform: scale(1.1);
-}
-
-/* ---------- JOGO HUNTER X HUNTER ---------- */
-#game-container {
-    margin-top: 20px;
-}
-
-#gameCanvas {
-    background-color: #87ceeb; /* céu */
-    display: block;
-    margin: 20px auto;
-    border: 3px solid red;
-    border-radius: 10px;
-}
-
-#game-status {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 10px;
-    font-size: 18px;
 }
