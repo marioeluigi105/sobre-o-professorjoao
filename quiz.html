@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <title>Quiz do João</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Estilo específico do quiz */
+        .pergunta {
+            margin: auto;
+            max-width: 700px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            border: 2px solid red;
+            text-align: center;
+        }
+
+        .opcao {
+            display: block;
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            background: #a00000;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 5px black;
+        }
+
+        .opcao:hover {
+            background: purple;
+            transform: scale(1.07);
+        }
+    </style>
 </head>
 
 <body>
@@ -19,53 +52,95 @@
 
 <h1>Quiz — Quanto você conhece o João?</h1>
 
-<div id="quiz" style="max-width:700px;margin:auto;font-size:20px;"></div>
+<div id="quiz"></div>
 
 <script>
 const quiz = [
-    { p: "Quantos anos o João tem?", a: "23" },
-    { p: "Qual moto é um dos maiores sonhos dele?", a: "KTM 1390" },
-    { p: "Qual seu personagem favorito de Hunter x Hunter? (um deles)", a: "Gon" },
-    { p: "Qual o maior sonho automotivo dele?", a: "NSX" },
-    { p: "Quantas tatuagens ele tem?", a: "8" },
-    { p: "Qual gênero musical ele NÃO ouve?", a: "Nenhum" },
-    { p: "Nome de um carro que ele gosta?", a: "GTR" },
-    { p: "Personagem de Fullmetal favorito dele?", a: "Edward" },
-    { p: "Moto aventureira que ele ama?", a: "África Twin" },
-    { p: "Personagem misterioso de Gravity Falls?", a: "Bill Cipher" }
+    {
+        p: "Quantos anos o João tem?",
+        op: ["20", "21", "23", "25"],
+        certa: 2
+    },
+    {
+        p: "Qual moto é um dos maiores sonhos dele?",
+        op: ["Hornet 600", "KTM 1390", "BMW 1000RR", "CB 500"],
+        certa: 1
+    },
+    {
+        p: "Qual personagem ele ama (Hunter x Hunter)?",
+        op: ["Hisoka", "Kurapika", "Illumi", "Gon"],
+        certa: 3
+    },
+    {
+        p: "Qual é o maior sonho automotivo do João?",
+        op: ["Supra", "NSX", "Ferrari 488", "GTR"],
+        certa: 1
+    },
+    {
+        p: "Quantas tatuagens João tem?",
+        op: ["3", "5", "8", "10"],
+        certa: 2
+    },
+    {
+        p: "Qual gênero musical ele NÃO ouve?",
+        op: ["Rock", "Clássico", "Funk", "Nenhum (ele ouve todos)"],
+        certa: 3
+    },
+    {
+        p: "Qual desses carros ele curte?",
+        op: ["Palio Fire", "Nissan GTR", "Gol Bolinha", "Ka 1.0"],
+        certa: 1
+    },
+    {
+        p: "Qual personagem de Fullmetal ele gosta?",
+        op: ["Roy Mustang", "Scar", "Edward", "Hohenheim"],
+        certa: 2
+    },
+    {
+        p: "Qual moto aventureira é sonho dele?",
+        op: ["XRE 300", "África Twin", "Tenere 250", "Tiger 1200"],
+        certa: 1
+    },
+    {
+        p: "Quem é o personagem misterioso de Gravity Falls que ele gosta?",
+        op: ["Dipper", "Bill Cipher", "Stan", "Wendy"],
+        certa: 1
+    }
 ];
 
 let i = 0;
 
 function mostrarPergunta() {
-    const divQuiz = document.getElementById("quiz");
+    const qDiv = document.getElementById("quiz");
 
     if (i >= quiz.length) {
-        divQuiz.innerHTML = "<h2>Fim! Você completou o quiz! ✔️</h2>";
+        qDiv.innerHTML = `
+            <div class='pergunta'>
+                <h2>🎉 Você completou o quiz! 🎉</h2>
+            </div>
+        `;
         return;
     }
 
     let q = quiz[i];
-    divQuiz.innerHTML = `
-        <p><b>${q.p}</b></p>
-        <input id="resp" autocomplete="off" style="padding:10px;width:90%;border-radius:5px;">
-        <br><br>
-        <button onclick="verificar()" style="padding:10px 20px;">Enviar</button>
+
+    qDiv.innerHTML = `
+        <div class='pergunta'>
+            <h2>${q.p}</h2>
+            ${q.op.map((opc, idx) => 
+                `<button class='opcao' onclick='responder(${idx})'>${opc}</button>`
+            ).join("")}
+        </div>
     `;
 }
 
-function verificar() {
-    let r = document.getElementById("resp").value.trim();
+function responder(opcaoEscolhida) {
+    let correta = quiz[i].certa;
 
-    if (r === "") {
-        alert("Digite alguma resposta!");
-        return;
-    }
-
-    if (r.toLowerCase().includes(quiz[i].a.toLowerCase())) {
-        alert("Certo! ✔️");
+    if (opcaoEscolhida === correta) {
+        alert("✔️ Acertou!");
     } else {
-        alert("Errado! ❌");
+        alert("❌ Errou!");
     }
 
     i++;
