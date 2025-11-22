@@ -38,70 +38,40 @@ h1, h2 {
     text-align: center;
     text-shadow: 0 0 10px red, 0 0 20px purple;
 }
-
-/* ---------- GRID MOTOS ---------- */
-.motos-grid {
+/* ---------- GRID DE MOTOS ---------- */
+.motos-grid, .carros-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 20px 50px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 20px;
+    padding: 0 50px;
+    justify-items: center; /* centraliza cada item */
+}
+
+.motos-grid img, .carros-grid img {
+    width: 100%;
+    max-width: 250px; /* evita que fiquem enormes */
+    border-radius: 10px;
+    border: 2px solid red; /* motos */
 }
 
 .motos-grid div {
-    border: 2px solid #ff0000;
-    border-radius: 12px;
-    background: rgba(255,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.motos-grid div:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #ff0000, 0 0 40px purple;
-}
-
-.motos-grid img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.motos-grid p {
     text-align: center;
-    padding: 10px;
-    font-weight: bold;
-}
-
-/* ---------- GRID CARROS ---------- */
-.carros-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 20px 50px;
-    margin-bottom: 50px;
 }
 
 .carros-grid div {
-    border: 2px solid #6600ff;
-    border-radius: 12px;
-    background: rgba(102,0,255,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.carros-grid div:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px purple, 0 0 40px red;
+    text-align: center;
 }
 
 .carros-grid img {
-    width: 100%;
-    border-radius: 10px;
+    border-color: purple; /* separa visualmente dos carros */
 }
 
-.carros-grid p {
-    text-align: center;
-    padding: 10px;
+.motos-grid p, .carros-grid p {
     font-weight: bold;
+    padding: 5px 0;
+    text-align: center;
 }
+
 
 /* ---------- CAIXA DE MENSAGENS ---------- */
 #mensagens {
