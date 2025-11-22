@@ -1,0 +1,75 @@
+/* ---------- ESTILO GERAL ---------- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #090909, #2b0033);
+    color: white;
+}
+
+/* ---------- MENU NAV ---------- */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(0,0,0,0.6);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(6px);
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: #a00000;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #6600ff;
+    transform: scale(1.1);
+}
+
+/* ---------- TÍTULOS ---------- */
+h1, h2 {
+    text-align: center;
+    text-shadow: 0 0 10px red, 0 0 20px purple;
+}
+
+/* ---------- GRID DE IMAGENS ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 30px;
+}
+
+.grid img {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid red;
+}
+
+.grid p {
+    text-align: center;
+    padding: 10px;
+}
+
+/* ---------- CAIXA DE MENSAGENS ---------- */
+#mensagens {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.msg {
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    margin-top: 10px;
+    border-left: 4px solid purple;
+}
