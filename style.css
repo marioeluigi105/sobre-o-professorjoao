@@ -134,4 +134,43 @@ button {
 button:hover {
     background: #6600ff;
     transform: scale(1.1);
+} 
+/* =================== CSS DO JOGO =================== */
+#game-wrapper {
+    margin-top: 40px;
 }
+
+#gameCanvas {
+    background-color: #87ceeb; /* céu do jogo */
+    display: block;
+    margin: 20px auto;
+    border: 3px solid red;
+    border-radius: 10px;
+}
+
+#game-status {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+#selecionar-personagem button {
+    margin: 5px;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #a00000;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#selecionar-personagem button:hover {
+    background: #6600ff;
+    transform: scale(1.1);
+}
+
