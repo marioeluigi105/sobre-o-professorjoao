@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Jogo Hunter x Hunter</title>
-<link rel="stylesheet" href="style-jogo.css">
-</head>
-<body>
-
-<h1>Escolha seu personagem</h1>
-<div id="selecionar-personagem">
-    <button onclick="escolherPersonagem('gon')">Gon</button>
-    <button onclick="escolherPersonagem('killua')">Killua</button>
-    <button onclick="escolherPersonagem('kurapika')">Kurapika</button>
-    <button onclick="escolherPersonagem('leorio')">Leorio</button>
-</div>
-
-<div id="game-container" style="display:none;">
-    <div id="game-status">
-        <span id="score">Pontuação: 0</span>
-        <span id="level">Nível: 1</span>
-        <span id="lives">Vidas: 3</span>
+<div id="game-wrapper">
+    <h1>Escolha seu personagem</h1>
+    <div id="selecionar-personagem">
+        <button onclick="escolherPersonagem('gon')">Gon</button>
+        <button onclick="escolherPersonagem('killua')">Killua</button>
+        <button onclick="escolherPersonagem('kurapika')">Kurapika</button>
+        <button onclick="escolherPersonagem('leorio')">Leorio</button>
     </div>
-    <canvas id="gameCanvas" width="800" height="400"></canvas>
-</div>
 
-<script src="script-jogo.js"></script>
-</body>
-</html>
+    <div id="game-container" style="display:none;">
+        <div id="game-status">
+            <span id="score">Pontuação: 0</span>
+            <span id="level">Nível: 1</span>
+            <span id="lives">Vidas: 3</span>
+        </div>
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+    </div>
+</div>
