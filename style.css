@@ -135,9 +135,13 @@ button:hover {
     background: #6600ff;
     transform: scale(1.1);
 } 
-/* =================== CSS DO JOGO INTEGRADO =================== */
+
+    transform: scale(1.1);
+}
+/* ---------- JOGO HxH ---------- */
 #game-wrapper {
     margin-top: 40px;
+    text-align: center;
 }
 
 #gameCanvas {
@@ -145,8 +149,7 @@ button:hover {
     margin: 20px auto;
     border: 3px solid red;
     border-radius: 10px;
-    /* fundo transparente para herdar do site */
-    background-color: transparent;
+    background-color: transparent; /* transparente para herdar o fundo do site */
 }
 
 #game-status {
