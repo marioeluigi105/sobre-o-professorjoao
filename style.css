@@ -135,17 +135,18 @@ button:hover {
     background: #6600ff;
     transform: scale(1.1);
 } 
-/* =================== CSS DO JOGO =================== */
+/* =================== CSS DO JOGO INTEGRADO =================== */
 #game-wrapper {
     margin-top: 40px;
 }
 
 #gameCanvas {
-    background-color: #87ceeb; /* céu do jogo */
     display: block;
     margin: 20px auto;
     border: 3px solid red;
     border-radius: 10px;
+    /* fundo transparente para herdar do site */
+    background-color: transparent;
 }
 
 #game-status {
@@ -173,4 +174,5 @@ button:hover {
     background: #6600ff;
     transform: scale(1.1);
 }
+
 
