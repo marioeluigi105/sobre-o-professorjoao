@@ -1,66 +1,115 @@
-let canvas = document.getElementById("game");
-let ctx = canvas.getContext("2d");
+let personagemEscolhido = null;
 
-let gon = {x:50, y:200, vy:0};
-let chao = 250;
-let moedas = [];
-let obst = [];
-let score = 0;
-
-function spawnMoeda(){
-    moedas.push({x:600, y: Math.random()*200});
-}
-function spawnObst(){
-    obst.push({x:600, y:220});
+function escolherPersonagem(nome) {
+    personagemEscolhido = nome;
+    document.getElementById('selecionar-personagem').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+    iniciarJogo();
 }
 
-setInterval(spawnMoeda, 1000);
-setInterval(spawnObst, 1500);
+// ---------------- JOGO ----------------
+let canvas, ctx;
+let player, keys = {}, gravity = 1;
+let obstacles = [], coins = [];
+let score = 0, level = 1, lives = 3;
+let frameCount = 0;
 
-function loop(){
-    ctx.clearRect(0,0,600,300);
+function iniciarJogo() {
+    canvas = document.getElementById('gameCanvas');
+    ctx = canvas.getContext('2d');
 
-    gon.y += gon.vy;
-    gon.vy += 1;
-    if(gon.y > chao){ gon.y = chao; }
+    // Jogador
+    player = {
+        x: 50,
+        y: 300,
+        width: 40,
+        height: 60,
+        dy: 0,
+        jumpPower: -15
+    };
 
-    ctx.fillStyle="yellow";
-    moedas.forEach(m=>{
-        m.x-=4;
-        ctx.beginPath();
-        ctx.arc(m.x,m.y,10,0,Math.PI*2);
-        ctx.fill();
+    document.addEventListener('keydown', e => keys[e.code] = true);
+    document.addEventListener('keyup', e => keys[e.code] = false);
 
-        if(Math.abs(m.x-gon.x)<20 && Math.abs(m.y-gon.y)<20){
-            score+=100;
-            m.x=-999;
-        }
-    });
+    requestAnimationFrame(gameLoop);
+}
 
-    ctx.fillStyle="red";
-    obst.forEach(o=>{
-        o.x-=6;
-        ctx.fillRect(o.x,o.y,20,30);
+function gameLoop() {
+    frameCount++;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if(Math.abs(o.x-gon.x)<20 && gon.y>200){
-            alert("Você bateu! Pontos: "+score);
-            document.location.reload();
-        }
-    });
+    // Solo
+    ctx.fillStyle = "#654321";
+    ctx.fillRect(0, 360, canvas.width, 40);
 
-    ctx.fillStyle="white";
-    ctx.fillRect(gon.x, gon.y, 20, 20);
+    // Jogador
+    if(keys['Space'] && player.y >= 300) player.dy = player.jumpPower;
+    player.dy += gravity;
+    player.y += player.dy;
+    if(player.y > 300) { player.y = 300; player.dy = 0; }
 
-    ctx.fillText("Score: "+score, 10,20);
+    // Desenhar personagem (simples retângulo, depois pode trocar por sprite)
+    ctx.fillStyle = "green";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    if(score >= 500){
-        ctx.fillText("LEVEL UP!", 260,20);
+    // Obstáculos
+    if(frameCount % 120 === 0) {
+        obstacles.push({x: 800, y: 320, width: 40, height: 40});
     }
 
-    requestAnimationFrame(loop);
-}
-loop();
+    for(let i = obstacles.length-1; i>=0; i--){
+        obstacles[i].x -= 5;
+        ctx.fillStyle = "red";
+        ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
 
-document.addEventListener("keydown", ()=>{ 
-    if(gon.y >= chao) gon.vy = -18;
-});
+        // Colisão
+        if(player.x < obstacles[i].x + obstacles[i].width &&
+           player.x + player.width > obstacles[i].x &&
+           player.y < obstacles[i].y + obstacles[i].height &&
+           player.y + player.height > obstacles[i].y){
+               obstacles.splice(i,1);
+               lives--;
+               atualizarStatus();
+               if(lives <=0) return alert("Fim de jogo! Pontuação: " + score);
+        }
+
+        if(obstacles[i] && obstacles[i].x + obstacles[i].width < 0) obstacles.splice(i,1);
+    }
+
+    // Moedas
+    if(frameCount % 80 === 0) {
+        coins.push({x: 800, y: Math.random()*200+100, width: 20, height: 20});
+    }
+
+    for(let i = coins.length-1; i>=0; i--){
+        coins[i].x -= 5;
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(coins[i].x+10, coins[i].y+10, 10, 0, Math.PI*2);
+        ctx.fill();
+
+        // Colisão jogador
+        if(player.x < coins[i].x + coins[i].width &&
+           player.x + player.width > coins[i].x &&
+           player.y < coins[i].y + coins[i].height &&
+           player.y + player.height > coins[i].y){
+               coins.splice(i,1);
+               score += 10;
+               atualizarStatus();
+        }
+
+        if(coins[i] && coins[i].x + coins[i].width < 0) coins.splice(i,1);
+    }
+
+    // Nível aumenta a cada 500 pontos
+    level = Math.floor(score / 500) + 1;
+    atualizarStatus();
+
+    requestAnimationFrame(gameLoop);
+}
+
+function atualizarStatus(){
+    document.getElementById('score').innerText = "Pontuação: " + score;
+    document.getElementById('level').innerText = "Nível: " + level;
+    document.getElementById('lives').innerText = "Vidas: " + lives;
+}
