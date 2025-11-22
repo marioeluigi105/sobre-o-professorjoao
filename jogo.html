@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Jogo do Gon</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Jogo Hunter x Hunter</title>
+<link rel="stylesheet" href="style-jogo.css">
 </head>
-
 <body>
 
-<nav>
-    <a href="index.html">Sobre João</a>
-    <a href="motos-carros.html">Motos e Carros</a>
-    <a href="animes.html">Animes Favoritos</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="jogo.html">Jogo</a>
-    <a href="mensagens.html">Mensagens</a>
-</nav>
+<h1>Escolha seu personagem</h1>
+<div id="selecionar-personagem">
+    <button onclick="escolherPersonagem('gon')">Gon</button>
+    <button onclick="escolherPersonagem('killua')">Killua</button>
+    <button onclick="escolherPersonagem('kurapika')">Kurapika</button>
+    <button onclick="escolherPersonagem('leorio')">Leorio</button>
+</div>
 
-<h1>Jogo do Gon</h1>
-
-<canvas id="game" width="600" height="300" style="background:black;display:block;margin:auto;border:2px solid red;"></canvas>
+<div id="game-container" style="display:none;">
+    <div id="game-status">
+        <span id="score">Pontuação: 0</span>
+        <span id="level">Nível: 1</span>
+        <span id="lives">Vidas: 3</span>
+    </div>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+</div>
 
 <script src="script-jogo.js"></script>
-
 </body>
 </html>
