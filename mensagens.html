@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensagens para João</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Sobre João</a>
+    <a href="motos-carros.html">Motos e Carros</a>
+    <a href="animes.html">Animes Favoritos</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="jogo.html">Jogo</a>
+    <a href="mensagens.html">Mensagens</a>
+</nav>
+
+<h1>Deixe sua mensagem para o João</h1>
+
+<div id="mensagens"></div>
+
+<div style="text-align:center;margin-top:25px;">
+    <textarea id="texto" style="width:60%;height:80px;"></textarea><br><br>
+    <button onclick="enviar()" style="padding:10px 20px;">Enviar</button>
+</div>
+
+<script>
+const proibidas = ["palavrão1","palavrão2","xxx","****"]; // coloque aqui palavras proibidas
+
+function enviar(){
+    let t = document.getElementById("texto").value;
+
+    for(let p of proibidas){
+        if(t.toLowerCase().includes(p)){
+            alert("Sem palavrões! 😠");
+            return;
+        }
+    }
+
+    let div = document.createElement("div");
+    div.className = "msg";
+    div.innerText = t;
+    document.getElementById("mensagens").appendChild(div);
+
+    document.getElementById("texto").value = "";
+}
+</script>
+
+</body>
+</html>
